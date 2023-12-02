@@ -20,4 +20,7 @@
   * [How transformers work at inference vs training time ?](https://www.youtube.com/watch?v=IGu7ivuy1Ag) - Niels Rogge@huggingface
   * [The FLOPs Calculus of Language Model Training](https://medium.com/@dzmitrybahdanau/the-flops-calculus-of-language-model-training-3b19c1f025e4) - Dzmitry Bahdanau
 
+
+## LLMs and associated tools/techniques
+
  
