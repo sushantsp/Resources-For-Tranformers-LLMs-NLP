@@ -1,5 +1,6 @@
 # Curated Resources-For-Tranformers-LLMs-NLP
 ## Language Models before Transformers
+  1) Add resources on Traditional NLP
 
 
 ## Transformers - Everything you need to know
