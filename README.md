@@ -24,4 +24,7 @@
 ## LLMs and associated tools/techniques
   * On RAG
 
+## ML communities
+  * [ML Commmons](https://mlcommons.org/)
+
  
