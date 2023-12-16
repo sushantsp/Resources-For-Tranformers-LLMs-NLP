@@ -25,6 +25,7 @@
   * On RAG
 
 ## ML communities
-  * [ML Commmons](https://mlcommons.org/)
+  1) [ML Commmons](https://mlcommons.org/)
+     * MLCommons is an Artificial Intelligence engineering consortium, built on a philosophy of open collaboration to improve AI systems. Through our collective engineering efforts with industry and academia we continually measure and improve the accuracy, safety, speed and efficiency of AI technologies–helping companies and universities around the world build better AI systems that will benefit society. 
 
  
