@@ -1,6 +1,15 @@
 # Curated Resources-For-Tranformers-LLMs-NLP
 ## Language Models before Transformers
   1) Add resources on Traditional NLP
+  2) RNNs, LSTMs and GRUs :
+     * RNNs - 4 Part Series, Denny’s Blog:
+       * [Recurrent Neural Networks Tutorial, Part 1 – Introduction to RNNs](https://dennybritz.com/posts/wildml/recurrent-neural-networks-tutorial-part-1/)
+       * [Recurrent Neural Networks Tutorial, Part 2 – Implementing a RNN with Python, Numpy and Theano](https://dennybritz.com/posts/wildml/recurrent-neural-networks-tutorial-part-2/)
+       * [Recurrent Neural Networks Tutorial, Part 3 – Backpropagation Through Time and Vanishing Gradients](https://dennybritz.com/posts/wildml/recurrent-neural-networks-tutorial-part-3/)
+       * [Recurrent Neural Network Tutorial, Part 4 – Implementing a GRU and LSTM RNN with Python and Theano](https://dennybritz.com/posts/wildml/recurrent-neural-networks-tutorial-part-4/)
+     * [Understanding LSTM Networks](https://colah.github.io/posts/2015-08-Understanding-LSTMs/) - Colah's Blog
+     * [Illustrated Guide to LSTM’s and GRU’s: A step by step explanation](https://towardsdatascience.com/illustrated-guide-to-lstms-and-gru-s-a-step-by-step-explanation-44e9eb85bf21)
+     * [Recurrent Neural Networks (RNN) and Long Short-Term Memory (LSTM)](https://www.youtube.com/watch?v=WCUNPb-5EYI) - By Brandon Rohrer
 
 
 ## Transformers - Everything you need to know
