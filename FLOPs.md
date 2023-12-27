@@ -77,6 +77,59 @@ Sure, I'd be happy to explain this calculation!
   3. Minimum training time (T): This is the minimum amount of time it would take to perform all of these computations on the cluster of GPUs. It's calculated by dividing the total compute (C) by the total computational performance of the GPU cluster (1024 times the performance of a single GPU, or 1024𝜏), and then dividing by the number of seconds in a day (86400) to convert the time to days. This gives a minimum training time of 2.67 days.
 * This calculation assumes that the GPUs are working at their peak performance the entire time and that there are no other bottlenecks or delays in the training process, which may not be the case in a real-world scenario. However, it gives a rough estimate of the minimum amount of time required to train the model.
 
+# Deep Learning/Transformers FLOPs
+
+# Q1. Can you explain to me the following weight FLOPs in transformers. For each example in the batch, the weight w generates exactly 6 FLOPs combined in the forward and backward pass:
+### The unit ```i``` multiplies its output ```h(i)``` by w to send it to the unit ```j```. The unit ```j``` adds the unit ```i’s``` contribution to its total input ```a(j)```. The unit ```j``` multiplies the incoming loss gradient ```dL/da(j)``` by ```w``` to send it back to the unit ```i```. The unit ```i``` adds the unit ```j’s``` contribution to its total loss gradient ```dL/dh(i)```. The unit ```j``` multiplies its loss gradient ```dL/da(j)``` by the unit ```i’s``` output ```h(i)``` to compute the loss gradient ```dL/dw``` for the given example. (The sneakiest FLOP, IMHO) The weight ```w``` adds the contribution from step 5 to its loss gradient accumulator ```dL/dw``` that aggregates gradients for all examples.
+
+
+* In the context of Transformer models, weights are the parameters that the model learns during training. Each weight is associated with a connection between two units (also called neurons or nodes) in the neural network. The weight determines the strength of the connection between the units.
+* In the forward and backward passes of the model's training, each weight is involved in a series of operations, each of which involves a floating point operation (FLOP). Here's what each step you listed involves:
+	1)  Multiplication: The output of unit ```i``` (denoted ```h(i)```) is multiplied by the weight ```w```. This is a multiplication operation, which is one FLOP.
+	2)  Addition: The contribution from unit ```i``` is added to the total input of unit ```j``` (denoted ```a(j)```). This is an addition operation, which is another FLOP.
+	3)  Multiplication: During the backward pass, the incoming loss gradient for unit ```j``` (denoted ```dL/da(j)```) is multiplied by the weight ```w```. This is another multiplication operation, or one more FLOP.
+	4. Addition: The contribution from unit ```j``` is added to the total loss gradient for unit ```i``` (denoted ```dL/dh(i)```). This is another addition operation, or one more FLOP.
+	5. Multiplication: The loss gradient for unit ```j``` is multiplied by the output of unit ```i``` to compute the loss gradient with respect to the weight (denoted ```dL/dw```). This is another multiplication operation, or one more FLOP.
+	6. Addition: The contribution from step 5 is added to the loss gradient accumulator for the weight, which aggregates the gradients for all examples. This is another addition operation, or one more FLOP.
+* So, in total, each weight generates exactly 6 FLOPs (4 multiplications and 2 additions) in the forward and backward pass for each example in the batch. These operations are fundamental to the process of training the neural network, as they allow the model to adjust its weights in response to the error it made on the training data.
+
+* In the context of neural networks, a gradient is a vector that points in the direction of the greatest rate of increase of a function. In this case, the function is the loss function, which measures how well the neural network's predictions match the actual values in the training data. The goal of training is to adjust the weights of the network to minimize this loss function.
+* During training, the network first makes a prediction on the training data (the forward pass). Then, it calculates the loss, which is the difference between the predicted and actual values.
+The network then performs a backward pass, where it calculates the gradient of the loss with respect to each weight in the network. This gradient tells us how much the loss would change if we made a small change to the weight.
+* Here's what each step in the backward pass involves:
+	1. Multiplication: The incoming loss gradient for unit j (denoted dL/da(j)) is multiplied by the weight w. This is calculating how much the loss would change if we changed the total input to unit j, and then how much that would change the output of unit i (since the output of unit i is determined by the total input to unit j times the weight w).
+	2. Addition: The contribution from unit j is added to the total loss gradient for unit i (denoted dL/dh(i)). This is summing up all the ways that changing the output of unit i could change the loss, by considering all the units j that unit i sends output to.
+	3. Multiplication: The loss gradient for unit j (dL/da(j)) is multiplied by the output of unit i (h(i)) to compute the loss gradient with respect to the weight (denoted dL/dw). This is calculating how much the loss would change if we changed the weight w, considering both how much changing w would change the total input to unit j, and how much that would change the loss.
+	4. Addition: The contribution from step 5 is added to the loss gradient accumulator for the weight, which aggregates the gradients for all examples. This is summing up the gradients for each example in the batch, to get an overall measure of how much changing the weight w would change the loss, averaged over all the examples in the batch.
+* After the gradients are calculated, the weights are updated in the direction that decreases the loss. This process is repeated many times until the network's predictions are as close as possible to the actual values.
+
+* Let's say we have a neural network with two units, i and j, and a weight w connecting them. We'll use a batch of one example for simplicity.
+* In the forward pass:
+	1. Multiplication: Let's say the output of unit i, h(i), is 0.5. The weight w is 0.6. So, the contribution from unit i to unit j is 0.5 * 0.6 = 0.3.
+	2. Addition: Let's say the total input to unit j, a(j), is initially 0. Then we add the contribution from unit i, so a(j) becomes 0 + 0.3 = 0.3.
+* In the backward pass, let's say the loss L is 0.2 and we've computed the loss gradient for unit j, dL/da(j), to be 0.4.
+	1. Multiplication: The incoming loss gradient for unit j is multiplied by the weight w, so the contribution to the loss gradient for unit i is 0.4 * 0.6 = 0.24.
+	2. Addition: Let's say the total loss gradient for unit i, dL/dh(i), is initially 0. Then we add the contribution from unit j, so dL/dh(i) becomes 0 + 0.24 = 0.24.
+	3. Multiplication: The loss gradient for unit j is multiplied by the output of unit i to compute the loss gradient with respect to the weight, so dL/dw = 0.4 * 0.5 = 0.2.
+	4. Addition: The contribution from step 5 is added to the loss gradient accumulator for the weight, which aggregates the gradients for all examples. In this case, with only one example, dL/dw = 0 + 0.2 = 0.2.
+* So, in this example, the forward pass computes the contribution of unit i to unit j, and the backward pass computes how much changing the weight w would change the loss. The weight w would then be updated to decrease the loss, by subtracting a small step in the direction of the gradient (this step size is controlled by the learning rate, a hyperparameter of the training process).
+
+* The reason we sum up (or aggregate) the gradients across all examples in the batch before updating the weights is due to the nature of batch gradient descent optimization, which is commonly used in training neural networks.
+* In batch gradient descent, the model's parameters (in this case, the weights) are updated once per batch of examples, rather than once per individual example. The gradient of the loss function with respect to the parameters is computed for each example in the batch, and these gradients are then averaged (or summed, which is equivalent when the batch size is constant) to obtain an estimate of the overall gradient for the batch.
+* This approach has several advantages:
+	1. Computational efficiency: It's often more efficient to compute the gradients for a batch of examples at once, due to the parallel processing capabilities of modern hardware (like GPUs).
+	2. Noise reduction: By averaging the gradients over a batch of examples, we can reduce the noise in the gradient estimates, which can lead to more stable and reliable training.
+	3. Generalization: Batch gradient descent can also help to improve the model's ability to generalize from the training data to new, unseen data, by providing a more robust estimate of the gradient.
+* After the gradients are aggregated across the batch, the weights are then updated by taking a step in the direction of the negative gradient. This helps to minimize the loss function, which is the objective of the training process.
+
+
+* If we were using a method called stochastic gradient descent (SGD), which updates the weights after each individual example, we wouldn't need to sum or average the gradients. We would compute the gradient for a single example and immediately take a step in the direction of the negative gradient to update the weights.
+* However, in practice, it's common to use mini-batch gradient descent, which is a compromise between SGD and full batch gradient descent. In mini-batch gradient descent, we use a small batch of examples (often between 10 and a few hundred) at each step. This combines the computational efficiency and noise reduction benefits of batch gradient descent with the faster convergence and better generalization of SGD.
+* So, in mini-batch gradient descent, we still need to sum or average the gradients over the mini-batch before updating the weights.
+
+
+
+
 # Q8 Explain me the following concepts clearly : 
   1) Model parameters
   2) Optimizer states
