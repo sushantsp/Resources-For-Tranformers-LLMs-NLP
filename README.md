@@ -38,4 +38,8 @@
   1) [ML Commmons](https://mlcommons.org/)
      * MLCommons is an Artificial Intelligence engineering consortium, built on a philosophy of open collaboration to improve AI systems. Through our collective engineering efforts with industry and academia we continually measure and improve the accuracy, safety, speed and efficiency of AI technologies–helping companies and universities around the world build better AI systems that will benefit society. 
 
+## Articles and Books
+  1) [Prediction Machines : Simple Economics of AI](https://www.predictionmachines.ai/) - Book by Ajay Agarwal and Joshua Gans
+  2) [Three Principles for Designing ML-Powered Products](https://spotify.design/article/three-principles-for-designing-ml-powered-products)
+  3) [Software 2.0](https://karpathy.medium.com/software-2-0-a64152b37c35) - By Andrej Karpathy 
  
