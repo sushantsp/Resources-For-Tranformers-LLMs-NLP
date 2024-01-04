@@ -31,6 +31,10 @@
   * [The FLOPs Calculus of Language Model Training](https://medium.com/@dzmitrybahdanau/the-flops-calculus-of-language-model-training-3b19c1f025e4) - Dzmitry Bahdanau
 
 
+### On Quantization
+  * [Quantization in Deep Learning](https://www.youtube.com/watch?v=UQlsqdwCQdc)
+    * Topics covered include Types of Quantization - Uniform and Non-Uniform quantization, and further divisions of Uniform quantization such as symmetric and asymmetric quantization, dequantization, choosing the scale factor and zero point parameters for both symmetric and asymmetric quantization. Lastly, Post-training quantization or PQT and Quantization Aware Training or QAT are also covered. 
+
 ## LLMs and associated tools/techniques
   * On RAG
 
