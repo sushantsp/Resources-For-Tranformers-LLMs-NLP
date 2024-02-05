@@ -47,3 +47,10 @@
   2) [Three Principles for Designing ML-Powered Products](https://spotify.design/article/three-principles-for-designing-ml-powered-products)
   3) [Software 2.0](https://karpathy.medium.com/software-2-0-a64152b37c35) - By Andrej Karpathy 
  
+
+
+# ML Resources
+  1) [Machine learning, explained - MIT Sloan as a blog post](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)
+  2) [AWS Machine Learning Blog](https://aws.amazon.com/blogs/machine-learning/)
+  3) [The 10 Best AI, Data Science and Machine Learning Podcasts](https://medium.com/startup-grind/the-10-best-ai-data-science-and-machine-learning-podcasts-d7495cfb127c)
+  4) [An Introduction to Statistical Learning](https://www.statlearning.com/)
