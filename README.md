@@ -33,7 +33,8 @@
 
 ### On Quantization
   * [Quantization in Deep Learning](https://www.youtube.com/watch?v=UQlsqdwCQdc)
-    * Topics covered include Types of Quantization - Uniform and Non-Uniform quantization, and further divisions of Uniform quantization such as symmetric and asymmetric quantization, dequantization, choosing the scale factor and zero point parameters for both symmetric and asymmetric quantization. Lastly, Post-training quantization or PQT and Quantization Aware Training or QAT are also covered. 
+    * Topics covered include Types of Quantization - Uniform and Non-Uniform quantization, and further divisions of Uniform quantization such as symmetric and asymmetric quantization, dequantization, choosing the scale factor and zero point parameters for both symmetric and asymmetric quantization. Lastly, Post-training quantization or PQT and Quantization Aware Training or QAT are also covered.
+  * [(GPTQ vs. GGUF vs. AWQ)](https://www.youtube.com/watch?v=mNE_d-C82lI&pp=ygUUcXVhbnRpemF0aW9uIG9mIGxsbXM%3D)
 
 ## LLMs and associated tools/techniques
   * On RAG
