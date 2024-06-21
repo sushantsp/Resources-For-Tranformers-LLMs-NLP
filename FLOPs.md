@@ -1,4 +1,29 @@
-Interaction with ChatGPT about the explaination of FLOPs
+# Prompt Template for summarising the transcript of the lecture.
+	Hi Following was the template that you followed for summarization. 
+
+	Chapter #: Chapter Title
+	This chapter covers the topic of [Topic]. Here's a summary of the main points:
+	
+| Topic	| Summary |
+|------|-------|
+| [Topic 1]	|[Summary of Topic 1]|
+|[Topic 2]	|[Summary of Topic 2]|
+|[Topic 3]	| [Summary of Topic 3]|
+|[Topic 4]	 | [Summary of Topic 4]|
+
+	Key Takeaways:
+		• [Key Takeaway 1]
+		• [Key Takeaway 2]
+		• [Key Takeaway 3]
+	
+	From my end:
+		• [Additional Point 1 from AI]
+		• [Additional Point 2 from AI]
+		• [Additional Point 3 from AI]
+	
+	
+	
+# Explaination of FLOPs 🧮 ✖️ ➕
 
 # Q1. Explain FLOPs with example.
 
@@ -76,6 +101,23 @@ Sure, I'd be happy to explain this calculation!
   2. Total compute (C): This is the total number of computations required to train the model. It's calculated as 6 times the number of parameters (8.2e10, or 82 billion) times the number of tokens (1.5e11, or 150 billion). The factor of 6 comes from the fact that each parameter update in the training process involves a series of computations (including forward pass, backward pass, and weight update). This gives a total compute of 7.38e22 computations.
   3. Minimum training time (T): This is the minimum amount of time it would take to perform all of these computations on the cluster of GPUs. It's calculated by dividing the total compute (C) by the total computational performance of the GPU cluster (1024 times the performance of a single GPU, or 1024𝜏), and then dividing by the number of seconds in a day (86400) to convert the time to days. This gives a minimum training time of 2.67 days.
 * This calculation assumes that the GPUs are working at their peak performance the entire time and that there are no other bottlenecks or delays in the training process, which may not be the case in a real-world scenario. However, it gives a rough estimate of the minimum amount of time required to train the model.
+
+# Q8. Why only weight FLOPs matter ?
+
+## A8.
+I have asked you to swallow the assumption that only FLOPs from mulplications by weight matrices, and you might be wondering now if the assumption is too strong. It is a fair question to ask; it is commonly thought that attention is the bottleneck in Transformers, and here I am boldly brushing it aside. The reason we can do this is because attention only adds O(dL) FLOPs³ per token per layer, whereas matrix multiplications add O(d²) (for more precise counting check out the Megatron paper by Nvidia). And when we talk about really large models, d tends to be considerable larger than L, and hence weight FLOPs dwarf attention FLOPs!
+
+
+# Q9. ```attention only adds O(dL) FLOPs³ per token per layer, whereas matrix multiplications add O(d²)```- what does it mean ?
+
+## A9.
+This statement refers to the computational complexity in terms of Floating Point Operations Per Second (FLOPs) of two different operations in the context of neural network computations - attention mechanisms and matrix multiplications.
+* The "O()" notation is used in computer science to describe the performance or complexity of an algorithm. In this context, it describes how the number of computations (FLOPs) increases with the size of the input data.
+* "d" and "L" are dimensions of the input data. "d" is the dimensionality of the model (typically the number of hidden units), and "L" is the length of the input sequence.
+* "O(dL)" means that the number of computations for the attention mechanism increases linearly with both the dimensionality of the model and the length of the input sequence. So if you double the size of your model or the length of your sequence, you double the number of computations.
+* "O(d²)" means that the number of computations for matrix multiplications increases quadratically with the dimensionality of the model. So if you double the size of your model, you quadruple the number of computations.
+So, the statement is saying that attention mechanisms are computationally more efficient than matrix multiplications as the model size or sequence length increases.
+
 
 # Deep Learning/Transformers FLOPs
 
