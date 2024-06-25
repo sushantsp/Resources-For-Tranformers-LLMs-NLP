@@ -14,3 +14,47 @@ As for the LLM (Large Language Model) size, it's a measure of the complexity of 
 The GPU needs to store these parameters in its memory (either VRAM or RAM) to process them. The larger the LLM size, the more memory the GPU needs. If the GPU doesn't have enough memory, it will have to keep fetching data from the slower RAM, which can slow down the processing.
 So, in summary, the cores, VRAM, and RAM are all important components of a GPU. The cores do the processing, the VRAM stores data for quick access, and the RAM stores data for slower access. The LLM size determines how much memory the GPU needs to process the data.
 
+
+## How Torch.scatter_ works ?
+
+`scatter_` is an in-place operation that takes three arguments: `dim`, `index` and `src`. It uses the values from `src` and places them in the tensor at the indices specified in `index` along a certain dimension `dim`.
+
+Let's say you have a tensor of size (5, 10) that you want to one-hot encode. The tensor represents 5 samples and each sample can belong to one of 10 classes (0-9). For each sample, you have a class label.
+
+Here's an example:
+
+```python
+import torch
+
+# Number of samples
+n_samples = 5
+
+# Number of classes
+n_classes = 10
+
+# Initialize tensor
+tensor = torch.zeros(n_samples, n_classes)
+
+# Class labels for each sample
+labels = torch.tensor([2, 3, 4, 0, 1])
+
+# Use scatter to one-hot encode labels
+tensor.scatter_(1, labels.unsqueeze(1), 1)
+```
+The output will be:
+```python
+tensor(
+[[0., 0., 1., 0., 0., 0., 0., 0., 0., 0.],
+ [0., 0., 0., 1., 0., 0., 0., 0., 0., 0.],
+ [0., 0., 0., 0., 1., 0., 0., 0., 0., 0.],
+ [1., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+ [0., 1., 0., 0., 0., 0., 0., 0., 0., 0.]])
+```
+Here's what each argument does:
+
+- `dim=1`: This specifies that we want to scatter along the columns (dimension 1). If we had specified `dim=0`, we would scatter along the rows.
+
+- `index=labels.unsqueeze(1)`: The `index` tensor must have the same number of dimensions as the original tensor. `labels` is a 1D tensor, so we use `unsqueeze(1)` to add an extra dimension. This tensor specifies the indices of the elements to scatter.
+
+- `src=1`: This is the source value that we want to scatter in the tensor. In this case, we want to place a 1 at each index specified in the `index` tensor.
+
