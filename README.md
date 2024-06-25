@@ -35,12 +35,23 @@
   * [Quantization in Deep Learning](https://www.youtube.com/watch?v=UQlsqdwCQdc)
     * Topics covered include Types of Quantization - Uniform and Non-Uniform quantization, and further divisions of Uniform quantization such as symmetric and asymmetric quantization, dequantization, choosing the scale factor and zero point parameters for both symmetric and asymmetric quantization. Lastly, Post-training quantization or PQT and Quantization Aware Training or QAT are also covered.
   * [(GPTQ vs. GGUF vs. AWQ)](https://www.youtube.com/watch?v=mNE_d-C82lI&pp=ygUUcXVhbnRpemF0aW9uIG9mIGxsbXM%3D)
+  * [Lecture 05 - Quantization (Part I) | MIT 6.S965](https://www.youtube.com/watch?v=AlASZb93rrc&pp=ygUUcXVhbnRpemF0aW9uIG9mIGxsbXM%3D)
+  * [The Era of 1-bit LLMs by Microsoft | AI Paper Explained](https://www.youtube.com/watch?v=ZpxQec_3t38&pp=ygUUcXVhbnRpemF0aW9uIG9mIGxsbXM%3D)
+  * [How to make LLMs go fast](https://vgel.me/posts/faster-inference/)
+  * [Understanding 4bit Quantization: QLoRA explained (w/ Colab)](https://www.youtube.com/watch?v=TPcXVJ1VSRI&pp=ygUUcXVhbnRpemF0aW9uIG9mIGxsbXM%3D)
 
 ### On LLMs
 * [The Novice's LLM Training Guide](https://rentry.org/llm-training)
 * 
 ## LLMs associated tools/techniques
   * On RAG
+    * [Using Retrieval Augmented Generation (RAG) on a Custom PDF Dataset with Dell Technologies](https://volumes.blog/2023/12/04/using-retrieval-augmented-generation-rag-on-a-custom-pdf-dataset-with-dell-technologies/)
+  * On Local LLMs
+    * Tryout openllm
+    * Codelime - llm hosting
+    * Try ollama
+    * Llamafile
+
 
 ## ML communities
   1) [ML Commmons](https://mlcommons.org/)
