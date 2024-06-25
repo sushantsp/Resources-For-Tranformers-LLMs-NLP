@@ -60,9 +60,13 @@
 ## Articles and Books
   1) [Prediction Machines : Simple Economics of AI](https://www.predictionmachines.ai/) - Book by Ajay Agarwal and Joshua Gans
   2) [Three Principles for Designing ML-Powered Products](https://spotify.design/article/three-principles-for-designing-ml-powered-products)
-  3) [Software 2.0](https://karpathy.medium.com/software-2-0-a64152b37c35) - By Andrej Karpathy 
- 
-
+  3) [Software 2.0](https://karpathy.medium.com/software-2-0-a64152b37c35) - By Andrej Karpathy
+  4) Data Science in Production: Building Scalable Model Pipelines with Python
+  5) Designing Machine Learning Systems: An Iterative Process for Production-Ready Applications (Grayscale Indian Edition)
+  6) Practical Natural Language Processing: A Comprehensive Guide to Building Real-World NLP Systems
+  7) Machine learning algorithms in depths.
+  8) Machine learning engineering in action [,5,6,7,11,12,13,14,15,16 -115% size]
+  9) Regular Expression Puzzles
 
 # ML Resources
   1) [Machine learning, explained - MIT Sloan as a blog post](https://mitsloan.mit.edu/ideas-made-to-matter/machine-learning-explained)
