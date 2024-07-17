@@ -1,5 +1,73 @@
 HPC Tips and Tricks
 
+5) Aliases created for some of usual commands - Stored in .bashrc file. 
+	
+		5.1 To go to workind directory
+			alias wdir='cd /hpfs/scratch/users/'
+			alias wsdir = 'cd /hpfs/userws/'
+		
+		5.2 To see the contents of the dir.
+			alias ll='ls -la'
+	
+		5.3 SLURM aliases
+			
+			5.3.1 
+				alias getnode4='salloc --gres=gpu:2 --partition=gpu_short --time=04:00:00 srun --pty bash'
+				alias sq='squeue'
+		
+			5.3.2 for cancelling the jobs. sc <JOBID>
+				sc(){
+					scancel "$@"
+				}
+	
+			5.3.3 for getting different number gpus (1 to 4) on g004 for 4hrs
+				getgpu4(){
+					salloc --gres=gpu:$1 --partition=gpu_short --time=0$2:00:00 --mem=20G --mail-type=ALL srun --pty bash
+				}
+			
+			5.3.4 for getting different number gpus (1 to 4) on other gpus g001-g003 for 4hrs
+				getgpus(){
+					salloc --gres=gpu:$1 --partition=gpu --time=0$2:00:00 --mem=20G --mail-type=ALL  srun --pty bash
+				}
+				# for getting different number gpus (1 to 4) on other gpus g001-g003 for the give time. takes three arguments. no of gpus, days and hours
+				getgpus(){
+					salloc --gres=gpu:$1 --partition=gpu --time=$2-$3:00:00 --mem=20G --mail-type=ALL  srun --pty bash
+					}
+				
+		5.4 Creating sessions using tmux and other techniques
+			5.4.1 ## Creating attaching killing tmux sessions
+				
+				tcreate(){
+						tmux new -s $@
+				}
+	
+				tattach(){
+						tmux attach -t $@
+				}
+	
+				tlist(){
+						tmux list-sessions
+				}
+	
+				tkill(){
+						tmux kill-session -t $@
+				}
+		
+
+6) Batch file format 
+
+		#SBATCH --time 1:00:00  wall time of a job (or -t)
+		#SBATCH --partition=name  partition to use (or -p)
+		#SBATCH --account=name  account to use (or -A)
+		#SBATCH --nodes=2  number of nodes (or -N)
+		#SBATCH --ntasks 12  total number of tasks (or -n)
+		#SBATCH --mail-type=FAIL,BEGIN,END  events on which to send email
+		#SBATCH --mail-user=name@example.com  email address to use
+		#SBATCH -o slurm-%j.out-%N  name for stdout; %j is job#, %N node
+		#SBATCH -e slurm-%j.err-%N  name for stderr; %j is job#, %N node
+		#SBATCH --constraint “C20”  can use features given for nodes (or –C)
+
+
 8)	HPC commands :
 		
 		8.1 Loading/Unloading sub-commands:
