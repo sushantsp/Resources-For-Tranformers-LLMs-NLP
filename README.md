@@ -1,4 +1,5 @@
 # Curated Resources-For-Tranformers-LLMs-NLP
+* [Review Paper on LLM](https://arxiv.org/pdf/2402.06196v2)
 ## Language Models before Transformers
   1) Add resources on Traditional NLP
   2) RNNs, LSTMs and GRUs :
